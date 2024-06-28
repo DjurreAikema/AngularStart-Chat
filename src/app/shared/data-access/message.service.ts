@@ -1,12 +1,13 @@
 import {Injectable, computed, inject, signal, WritableSignal, Signal} from '@angular/core';
-import {Observable, merge, defer, Subject, exhaustMap, ignoreElements, catchError, of} from 'rxjs';
+import {Observable, merge, defer, Subject, exhaustMap, ignoreElements, catchError, of, retry, filter} from 'rxjs';
 import {collection, query, orderBy, limit, Firestore, addDoc} from 'firebase/firestore';
 import {collectionData} from 'rxfire/firestore';
 import {map} from 'rxjs/operators';
 import {connect} from 'ngxtension/connect';
 import {FIRESTORE} from '../../app.config';
 import {Message} from "../interfaces";
-import {AuthService} from "./auth.service";
+import {AuthService, AuthUser} from "./auth.service";
+import {toObservable} from "@angular/core/rxjs-interop";
 
 interface MessageState {
   messages: Message[];
@@ -34,9 +35,14 @@ export class MessageService {
 
 
   // --- Sources
-  messages$: Observable<Message[]> = this.getMessages();
+  messages$: Observable<Message[]> = this.getMessages().pipe(
+    retry({
+      delay: () => this.authUser$.pipe(filter((user) => !!user)),
+    }),
+  );
   add$: Subject<Message['content']> = new Subject<Message['content']>();
 
+  private authUser$: Observable<AuthUser> = toObservable(this.authService.user);
 
   // --- Reducers
   constructor() {
