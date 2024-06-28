@@ -76,6 +76,7 @@ $accent-darker: mat.m2-get-color-from-palette(
 
 html,
 body {
+  box-sizing: border-box;
   height: 100%;
 }
 body {
