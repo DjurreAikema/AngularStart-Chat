@@ -24,7 +24,7 @@ import {AuthService} from "../../shared/data-access/auth.service";
     }
   `]
 })
-export class LoginComponent {
+export default class LoginComponent {
   public loginService: LoginService = inject(LoginService);
   public authService: AuthService = inject(AuthService);
   private router: Router = inject(Router);
