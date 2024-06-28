@@ -24,7 +24,35 @@ import {Message} from "../../shared/interfaces";
 
     </ul>
   `,
-  styles: ``
+  styles: [`
+    ul {
+      height: 100%;
+      overflow: scroll;
+      list-style-type: none;
+      padding: 1rem 1rem 5rem;
+      margin: 0;
+    }
+
+    li {
+      display: flex;
+      margin-bottom: 2rem;
+    }
+
+    .avatar {
+      width: 75px;
+      margin: 0 1rem;
+      height: auto;
+      filter: drop-shadow(2px 3px 5px var(--accent-darker-color));
+    }
+
+    .message {
+      width: 100%;
+      background: var(--white);
+      padding: 2rem;
+      border-radius: 5px;
+      filter: drop-shadow(2px 4px 3px var(--primary-darker-color));
+    }
+  `]
 })
 export class MessageListComponent {
 

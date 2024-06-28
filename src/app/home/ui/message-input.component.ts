@@ -1,12 +1,14 @@
 import {Component, output, OutputEmitterRef} from '@angular/core';
 import {FormControl, ReactiveFormsModule} from "@angular/forms";
 import {MatButton} from "@angular/material/button";
+import {MatIconModule} from "@angular/material/icon";
 
 @Component({
   selector: 'app-message-input',
   standalone: true,
   imports: [
     ReactiveFormsModule,
+    MatIconModule,
     MatButton
   ],
   template: `

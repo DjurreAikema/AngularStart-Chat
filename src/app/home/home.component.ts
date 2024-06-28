@@ -1,16 +1,19 @@
 import {Component, inject} from '@angular/core';
 import {MessageListComponent} from "./ui/message-list.component";
 import {MessageService} from "../shared/data-access/message.service";
+import {MessageInputComponent} from "./ui/message-input.component";
 
 @Component({
   selector: 'app-home',
   standalone: true,
   imports: [
-    MessageListComponent
+    MessageListComponent,
+    MessageInputComponent
   ],
   template: `
     <div class="container">
-      <app-message-list [messages]="messageService.messages()" />
+      <app-message-list [messages]="messageService.messages()"/>
+      <app-message-input (send)="messageService.add$.next($event)"/>
     </div>
   `,
   styles: ``
