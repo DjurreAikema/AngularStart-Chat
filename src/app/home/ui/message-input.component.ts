@@ -30,7 +30,7 @@ import {MatIconModule} from "@angular/material/icon";
       background: var(--white);
       border: none;
       font-size: 1.2em;
-      padding: 2rem 1rem;
+      padding: 2rem 2rem;
     }
 
     button {
