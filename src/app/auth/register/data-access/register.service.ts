@@ -11,9 +11,7 @@ interface RegisterState {
   status: RegisterStatus;
 }
 
-@Injectable({
-  providedIn: 'root'
-})
+@Injectable()
 export class RegisterService {
 
   private authService: AuthService = inject(AuthService);
