@@ -7,6 +7,7 @@ import {MatIconModule} from "@angular/material/icon";
 import {MatProgressSpinnerModule} from "@angular/material/progress-spinner";
 import {RegisterStatus} from "../data-access/register.service";
 import {Credentials} from "../../../shared/interfaces";
+import {passwordMatchesValidator} from "../utils/password-matches";
 
 @Component({
   selector: 'app-register-form',
@@ -77,11 +78,17 @@ export class RegisterFormComponent {
 
   private fb: FormBuilder = inject(FormBuilder);
 
-  registerForm = this.fb.nonNullable.group({
-    email: ['', [Validators.email, Validators.required]],
-    password: ['', [Validators.minLength(8), Validators.required]],
-    confirmPassword: ['', [Validators.required]],
-  });
+  registerForm = this.fb.nonNullable.group(
+    {
+      email: ['', [Validators.email, Validators.required]],
+      password: ['', [Validators.minLength(8), Validators.required]],
+      confirmPassword: ['', [Validators.required]],
+    },
+    {
+      updateOn: 'blur',
+      validators: [passwordMatchesValidator],
+    }
+  );
 
   onSubmit(): void {
     if (!this.registerForm.valid) return;
