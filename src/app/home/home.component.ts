@@ -45,6 +45,8 @@ import {MatButtonModule} from "@angular/material/button";
 
       justify-items: stretch;
       align-items: stretch;
+
+      overflow: hidden;
     }
 
     mat-toolbar {
