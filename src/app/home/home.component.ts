@@ -19,7 +19,7 @@ import {MatButtonModule} from "@angular/material/button";
     MatToolbarModule,
   ],
   template: `
-    <div class="container">
+    <div class="home-container">
       <mat-toolbar color="primary">
         <span class="spacer"></span>
         <button mat-icon-button (click)="authService.logout()">
@@ -32,23 +32,34 @@ import {MatButtonModule} from "@angular/material/button";
     </div>
   `,
   styles: [`
-    .container {
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
+    .home-container {
       height: 100%;
+
+      display: grid;
+      grid-template-columns: minmax(0, 1fr);
+      grid-template-rows: auto minmax(0, 1fr) 100px;
+      grid-template-areas:
+        "header"
+        "body"
+        "footer";
+
+      justify-items: stretch;
+      align-items: stretch;
     }
 
     mat-toolbar {
+      grid-area: header;
       box-shadow: 0px -7px 11px 0px var(--accent-color);
     }
 
     app-message-list {
+      grid-area: body;
       height: 100%;
       width: 100%;
     }
 
     app-message-input {
+      grid-area: footer;
       position: fixed;
       bottom: 0;
     }
