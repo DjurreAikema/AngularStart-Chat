@@ -27,7 +27,7 @@ import {MatButtonModule} from "@angular/material/button";
         </button>
       </mat-toolbar>
 
-      <app-message-list [messages]="messageService.messages()"/>
+      <app-message-list [messages]="messageService.messages()" [activeUser]="authService.user()"/>
       <app-message-input (send)="messageService.add$.next($event)"/>
     </div>
   `,
